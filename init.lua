@@ -1,3 +1,3 @@
 require("config.lazy")
 require("config.remap")
-vim.o.relativenumber = true
+vim.opt.relativenumber = true

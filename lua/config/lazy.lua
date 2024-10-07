@@ -14,15 +14,27 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	end
 end
 vim.opt.rtp:prepend(lazypath)
--- Make sure to setup `mapleader` and `maplocalleader` before
--- loading lazy.nvim so that mappings are correct.
--- This is also a good place to setup other settings (vim.opt)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
-
--- Setup lazy.nvim
 require("lazy").setup({
 	spec = {
+		{
+			"pmizio/typescript-tools.nvim",
+			dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+			opts = {},
+		},
+		{'VonHeikemen/lsp-zero.nvim', branch = 'v4.x'},
+		{'neovim/nvim-lspconfig'},
+		{'hrsh7th/cmp-nvim-lsp'},
+		{'hrsh7th/nvim-cmp'},
+		{
+			"jiaoshijie/undotree",
+			dependencies = "nvim-lua/plenary.nvim",
+			config = true,
+			keys = { -- load the plugin only when using it's keybinding:
+				{ "<leader><F5>", "<cmd>lua require('undotree').toggle()<cr>" },
+			},
+		},
 		{
 			"kdheepak/lazygit.nvim",
 			lazy = true,
@@ -33,12 +45,9 @@ require("lazy").setup({
 				"LazyGitFilter",
 				"LazyGitFilterCurrentFile",
 			},
-			-- optional for floating window border decoration
 			dependencies = {
 				"nvim-lua/plenary.nvim",
 			},
-			-- setting the keybinding for LazyGit with 'keys' is recommended in
-			-- order to load the plugin when the command is run for the first time
 			keys = {
 				{ "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
 			}
@@ -47,8 +56,6 @@ require("lazy").setup({
 			'windwp/nvim-autopairs',
 			event = "InsertEnter",
 			config = true
-			-- use opts = {} for passing setup options
-			-- this is equivalent to setup({}) function
 		},
 		{'nvim-telescope/telescope.nvim', tag = '0.1.8'},
 		{
@@ -84,4 +91,22 @@ require("lazy").setup({
 	install = { colorscheme = { "gruvbox-material" } },
 	-- automatically check for plugin updates
 	checker = { enabled = true },
+})
+-- LSP Setup
+require('lspconfig').lua_ls.setup({
+})
+require("typescript-tools").setup({
+})
+local cmp = require('cmp')
+
+cmp.setup({
+  sources = {
+    {name = 'nvim_lsp'},
+  },
+  mapping = cmp.mapping.preset.insert({}),
+  snippet = {
+    expand = function(args)
+      vim.snippet.expand(args.body)
+    end,
+  },
 })
