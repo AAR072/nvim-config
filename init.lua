@@ -1,5 +1,8 @@
 require("config.lazy")
 require("config.remap")
+-- Make all yanks and pastes go into global clipboard
+vim.opt.clipboard = "unnamedplus"
+-- Enable relative line numbers
 vim.opt.relativenumber = true
 -- Enable filetype detection, plugin and indent support
 vim.cmd('filetype plugin indent on')
