@@ -18,6 +18,12 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 require("lazy").setup({
   spec = {
+    {"tpope/vim-commentary"},
+    {
+      "ThePrimeagen/harpoon",
+      branch = "harpoon2",
+      dependencies = { "nvim-lua/plenary.nvim" }
+    },
     {'VonHeikemen/lsp-zero.nvim', branch = 'v4.x'},
     {'neovim/nvim-lspconfig'},
     {'hrsh7th/cmp-nvim-lsp'},
