@@ -18,6 +18,22 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 require("lazy").setup({
   spec = {
+    {
+      'nvim-lualine/lualine.nvim',
+      dependencies = { 'nvim-tree/nvim-web-devicons' },
+          config = function()
+      require('plugins.lualine')  -- Load your external lualine configuration
+    end,
+    },
+    {
+      "OXY2DEV/markview.nvim",
+      lazy = false,      -- Recommended
+      dependencies = {
+        "nvim-treesitter/nvim-treesitter",
+        "nvim-tree/nvim-web-devicons"
+      }
+    },
+    -- {"pocco81/auto-save.nvim"},
     {"tpope/vim-commentary"},
     {
       "ThePrimeagen/harpoon",
@@ -86,7 +102,7 @@ require("lazy").setup({
           indent = { enable = true },  
         })
       end
-    }
+    },
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
@@ -152,3 +168,4 @@ cmp.setup({
     end,
   },
 })
+
