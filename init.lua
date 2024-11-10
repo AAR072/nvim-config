@@ -3,6 +3,8 @@ require("config.remap")
 -- Make line breaks respect word wrap
 vim.api.nvim_set_keymap('n', 'j', 'gj', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'k', 'gk', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', 'j', 'gj', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', 'k', 'gk', { noremap = true, silent = true })
 
 -- Make all yanks and pastes go into global clipboard
 vim.opt.clipboard = "unnamedplus"

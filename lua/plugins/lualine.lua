@@ -3,20 +3,19 @@
 -- Credit: glepnir
 local lualine = require('lualine')
 
--- Color table for highlights
--- stylua: ignore
+-- Color table for highlights based on gruvbox-material
+-- Replace color values with gruvbox-material colors
 local colors = {
-  bg       = '#202328',
-  fg       = '#bbc2cf',
-  yellow   = '#ECBE7B',
-  cyan     = '#008080',
-  darkblue = '#081633',
-  green    = '#98be65',
-  orange   = '#FF8800',
-  violet   = '#a9a1e1',
-  magenta  = '#c678dd',
-  blue     = '#51afef',
-  red      = '#ec5f67',
+  bg       = '#282828',    -- You can keep your existing background color
+  fg       = '#e2cca9',    -- fg0 and fg1
+  yellow   = '#e9b143',     -- yellow
+  aqua     = '#8bba7f',     -- aqua (mapped to cyan)
+  darkblue = '#458588',     -- You can keep a dark blue color or change as needed
+  green    = '#b0b846',     -- green
+  orange   = '#f28534',     -- orange
+  purple   = '#d3869b',     -- purple (mapped to magenta)
+  blue     = '#80aa9e',     -- blue
+  red      = '#f2594b',     -- red
 }
 
 local conditions = {
@@ -40,15 +39,13 @@ local config = {
     component_separators = '',
     section_separators = '',
     theme = {
-      -- We are going to use lualine_c an lualine_x as left and
-      -- right section. Both are highlighted by c theme .  So we
-      -- are just setting default looks o statusline
+      -- Set theme colors
       normal = { c = { fg = colors.fg, bg = colors.bg } },
       inactive = { c = { fg = colors.fg, bg = colors.bg } },
     },
   },
   sections = {
-    -- these are to remove the defaults
+    -- These are to remove the defaults
     lualine_a = {},
     lualine_b = {},
     lualine_y = {},
@@ -58,7 +55,7 @@ local config = {
     lualine_x = {},
   },
   inactive_sections = {
-    -- these are to remove the defaults
+    -- These are to remove the defaults
     lualine_a = {},
     lualine_b = {},
     lualine_y = {},
@@ -148,33 +145,33 @@ ins_left {
 }
 
 -- Insert mid section. You can make any number of sections in neovim :)
--- for lualine it's any number greater then 2
+-- for lualine it's any number greater than 2
 ins_left {
   function()
     return '%='
   end,
 }
 
-ins_left {
-  -- Lsp server name .
-  function()
-    local msg = 'No Active Lsp'
-    local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
-    local clients = vim.lsp.get_active_clients()
-    if next(clients) == nil then
-      return msg
-    end
-    for _, client in ipairs(clients) do
-      local filetypes = client.config.filetypes
-      if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-        return client.name
-      end
-    end
-    return msg
-  end,
-  icon = ' LSP:',
-  color = { fg = '#ffffff', gui = 'bold' },
-}
+-- ins_left {
+--   -- Lsp server name .
+--   function()
+--     local msg = 'No Active Lsp'
+--     local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
+--     local clients = vim.lsp.get_active_clients()
+--     if next(clients) == nil then
+--       return msg
+--     end
+--     for _, client in ipairs(clients) do
+--       local filetypes = client.config.filetypes
+--       if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+--         return client.name
+--       end
+--     end
+--     return msg
+--   end,
+--   icon = ' LSP:',
+--   color = { fg = '#ffffff', gui = 'bold' },
+-- }
 
 -- Add components to right sections
 ins_right {

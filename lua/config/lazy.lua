@@ -19,6 +19,28 @@ vim.g.maplocalleader = "\\"
 require("lazy").setup({
   spec = {
     {
+      "kawre/leetcode.nvim",
+      build = ":TSUpdate html",
+      dependencies = {
+        "nvim-telescope/telescope.nvim",
+        "nvim-lua/plenary.nvim", -- required by telescope
+        "MunifTanjim/nui.nvim",
+
+        -- optional
+        "nvim-treesitter/nvim-treesitter",
+        "rcarriga/nvim-notify",
+        "nvim-tree/nvim-web-devicons",
+      },
+      opts = {
+        -- configuration goes here
+      },
+    },
+    { "windwp/nvim-ts-autotag",
+      config = function()
+      require('plugins.autotag')
+      end
+    },
+    {
       'nvim-lualine/lualine.nvim',
       dependencies = { 'nvim-tree/nvim-web-devicons' },
           config = function()
@@ -97,9 +119,9 @@ require("lazy").setup({
         local configs = require("nvim-treesitter.configs")
 
         configs.setup({
-          ensure_installed = { "typescript", "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html" },
+          ensure_installed = { "typescript", "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html", "svelte" },
           highlight = { enable = true },
-          indent = { enable = true },  
+          indent = { enable = true },
         })
       end
     },
@@ -138,6 +160,8 @@ lsp_zero.extend_lspconfig({
 require('lspconfig').lua_ls.setup({
 })
 require('lspconfig').clangd.setup({
+})
+require'lspconfig'.svelte.setup({
 })
 require("typescript-tools").setup({
 })
