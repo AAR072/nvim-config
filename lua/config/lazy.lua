@@ -18,6 +18,15 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 require("lazy").setup({
   spec = {
+    { 'saadparwaiz1/cmp_luasnip' },
+    {
+      'L3MON4D3/LuaSnip',
+      dependencies = { "rafamadriz/friendly-snippets" },
+      config = function ()
+        require("luasnip")
+        require("luasnip.loaders.from_vscode").lazy_load()
+      end
+    },
     {
       "kawre/leetcode.nvim",
       build = ":TSUpdate html",
@@ -197,7 +206,7 @@ require('lspconfig').lua_ls.setup({
 })
 require('lspconfig').clangd.setup({
 })
-require'lspconfig'.svelte.setup({
+require('lspconfig').svelte.setup({
 })
 require("typescript-tools").setup({
 })
@@ -207,11 +216,14 @@ local cmp_action = require('lsp-zero').cmp_action()
 cmp.setup({
   preselect = 'item',
   sources = {
-    {name = 'nvim_lsp'},
+    { name = "luasnip" },  -- Snippet source
+    { name = "nvim_lsp" }, -- LSP source for keywords
+    { name = "buffer" },   -- Buffer completion
+    { name = "path" },     -- Filepath completion
   },
   mapping = cmp.mapping.preset.insert({
     -- `Enter` key to confirm completion
-    ['<CR>'] = cmp.mapping.confirm({select = false}),
+    ['<CR>'] = cmp.mapping.confirm({select = true}),
 
     -- Ctrl+Space to trigger completion menu
     ['<C-Space>'] = cmp.mapping.complete(),
@@ -225,7 +237,7 @@ cmp.setup({
     ['<C-d>'] = cmp.mapping.scroll_docs(4),  }),
   snippet = {
     expand = function(args)
-      vim.snippet.expand(args.body)
+      require'luasnip'.lsp_expand(args.body)
     end,
   },
 })
