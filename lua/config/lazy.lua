@@ -18,6 +18,12 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 require("lazy").setup({
   spec = {
+    {
+      'ggandor/leap.nvim',
+      config = function ()
+        require('leap').create_default_mappings()
+      end
+    },
     { 'saadparwaiz1/cmp_luasnip' },
     {
       'L3MON4D3/LuaSnip',
@@ -212,6 +218,12 @@ require("typescript-tools").setup({
 })
 local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()
+-- Add brackets after cmp function
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+cmp.event:on(
+  'confirm_done',
+  cmp_autopairs.on_confirm_done()
+)
 
 cmp.setup({
   preselect = 'item',
@@ -241,4 +253,3 @@ cmp.setup({
     end,
   },
 })
-
