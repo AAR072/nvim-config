@@ -1,5 +1,9 @@
 require("config.lazy")
 require("config.remap")
+
+-- Hide the banner in the explorer
+vim.g.netrw_banner = 0
+
 -- Make line breaks respect word wrap
 vim.api.nvim_set_keymap('n', 'j', 'gj', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'k', 'gk', { noremap = true, silent = true })
