@@ -12,6 +12,7 @@
   "lsp-zero.nvim": { "branch": "v4.x", "commit": "baff1ca10ecad7efe04f02f06d2647dd2ae90074" },
   "lualine.nvim": { "branch": "master", "commit": "2a5bae925481f999263d6f5ed8361baef8df4f83" },
   "markview.nvim": { "branch": "main", "commit": "6e9f1840ba33e5318285ad97c22676f55b753479" },
+  "no-neck-pain.nvim": { "branch": "main", "commit": "6aaa6e3c2d3d52a38ec095176a3d845cf9fd1e6e" },
   "nui.nvim": { "branch": "main", "commit": "53e907ffe5eedebdca1cd503b00aa8692068ca46" },
   "nvim-autopairs": { "branch": "master", "commit": "3d02855468f94bf435db41b661b58ec4f48a06b7" },
   "nvim-cmp": { "branch": "main", "commit": "8c82d0bd31299dbff7f8e780f5e06d2283de9678" },

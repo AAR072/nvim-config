@@ -19,6 +19,22 @@ vim.g.maplocalleader = "\\"
 require("lazy").setup({
   spec = {
     {
+      "shortcuts/no-neck-pain.nvim",
+      config = function()
+        require("no-neck-pain").setup({
+          buffers = {
+            wo = {
+              fillchars = "eob: ",
+            },
+            right = {
+              enabled = false,
+            },
+          },
+        })
+        vim.cmd(string.format("NoNeckPain", f))
+      end
+    },
+    {
       'ggandor/leap.nvim',
       config = function ()
         require('leap').create_default_mappings()
@@ -183,6 +199,11 @@ require("lazy").setup({
   -- automatically check for plugin updates
   checker = { enabled = true },
 })
+
+-- Centre Setup
+
+
+
 -- LSP Setup
 local lsp_zero = require('lsp-zero')
 
