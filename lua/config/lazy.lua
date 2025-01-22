@@ -133,7 +133,7 @@ require("lazy").setup({
         local configs = require("nvim-treesitter.configs")
 
         configs.setup({
-          ensure_installed = { "typescript", "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html", "svelte" },
+          ensure_installed = { "typescript", "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html", "svelte",},
           highlight = { enable = true },
           indent = { enable = true },
         })
@@ -214,6 +214,7 @@ require('lspconfig').clangd.setup({
 })
 require('lspconfig').svelte.setup({
 })
+require('lspconfig').eslint.setup {}
 require("typescript-tools").setup({
 })
 local cmp = require('cmp')
