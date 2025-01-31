@@ -28,4 +28,3 @@ vim.opt.softtabstop = 2
 
 -- When indenting with '>', use 2 spaces width
 vim.opt.shiftwidth = 2
-
