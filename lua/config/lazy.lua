@@ -19,6 +19,17 @@ vim.g.maplocalleader = "\\"
 require("lazy").setup({
   spec = {
     {
+      "ntpeters/vim-better-whitespace"
+    },
+    {
+      "folke/snacks.nvim",
+      ---@type snacks.Config
+      opts = {
+        indent = {
+        }
+      }
+    },
+    {
       'nvim-flutter/flutter-tools.nvim',
       lazy = false,
       dependencies = {
@@ -248,7 +259,6 @@ require('lspconfig').svelte.setup({
 })
 require("typescript-tools").setup({
 })
-require'lspconfig'.dartls.setup{}
 local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()
 -- Add brackets after cmp function
