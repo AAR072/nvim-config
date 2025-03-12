@@ -218,8 +218,8 @@ require("lazy").setup({
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
   install = { colorscheme = { "gruvbox-material" } },
-  -- automatically check for plugin updates
-  checker = { enabled = true },
+  -- Do not automatically check for plugin updates
+  checker = { enabled = false },
 })
 
 -- Centre Setup
